@@ -1,5 +1,5 @@
 // store/useStore.js
-import create from 'zustand';
+import {create} from 'zustand';
 import axios from 'axios';
 
 const useStore = create((set) => ({
@@ -44,6 +44,7 @@ const useStore = create((set) => ({
       await axios.delete(`http://localhost:5000/slots/${id}`);
       set((state) => ({
         slots: state.slots.filter((slot) => slot._id !== id),
+      
       }));
     } catch (error) {
       console.error('Error deleting slot:', error);
@@ -52,7 +53,9 @@ const useStore = create((set) => ({
 
   addInterview: async (interview) => {
     try {
+      console.log(interview)
       const response = await axios.post('http://localhost:5000/interviews', interview);
+
       set((state) => ({ interviews: [...state.interviews, response.data] }));
     } catch (error) {
       console.error('Error adding interview:', error);

@@ -14,7 +14,7 @@ const InterviewList = () => {
   useEffect(() => {
     fetchInterviews();
     fetchSlots();
-  }, []);
+  }, [interviews]);
 
   const handleAddOrUpdateInterview = () => {
     if (isEditing) {
@@ -25,6 +25,8 @@ const InterviewList = () => {
     setIsOpen(false);
     setIsEditing(false);
     setNewInterview({ candidateName: '', slotId: '', status: '' });
+  
+
   };
 
   const handleEdit = (id, interview) => {

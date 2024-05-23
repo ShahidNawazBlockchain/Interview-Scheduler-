@@ -27,7 +27,7 @@ app.post('/meeting', async (req, res) => {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 // Token valid for 1 hour
     };
     const token = jwt.sign(payload, confiq.APISecret);
-
+   console.log("token",token);
     const options = {
         method: "POST",
         uri: `https://api.zoom.us/v2/users/${email}/meetings`,
@@ -51,9 +51,10 @@ app.post('/meeting', async (req, res) => {
         },
         json: true
     };
-
+//    console.log(options);
     try {
         const response = await rp(options);
+         console.log("response",response);
         res.status(200).json({ join_url: response.join_url });
     } catch (err) {
         console.error("API error: ", err.message);

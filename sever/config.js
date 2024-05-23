@@ -5,8 +5,8 @@ const config = {
     APISecret: ""
   },
   production: {
-    APIKey: "mnav4GcIQUSDpAIkP6GMOA",
-    APISecret: "a4ttSoEUXgmSOwrr7qdm35aK73MbqVos"
+    APIKey: "1A3wEo2vQJG2IWM_2xoDKw",
+    APISecret: "MxGkwitJ6gIZE5wv5z02VGoXSSqrN22B"
   }
 };
 

@@ -58,10 +58,9 @@ router.put('/:id', async (req, res) => {
 // DELETE /interviews/:id: Cancel a scheduled interview by ID
 router.delete('/:id', async (req, res) => {
   try {
-    const interview = await Interview.findById(req.params.id);
-    if (!interview) return res.status(404).json({ message: 'Interview not found' });
-
-    await interview.remove();
+    const { id }=req.params;
+    await Interview.findByIdAndDelete(id);
+  
     res.json({ message: 'Interview canceled' });
   } catch (err) {
     res.status(500).json({ message: err.message });

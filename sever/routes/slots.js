@@ -1,4 +1,5 @@
 const express = require('express');
+const Interview = require('../models/Interview');
 const router = express.Router();
 const Slot = require('../models/Slot');
 
@@ -57,9 +58,14 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/slots/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("id",id);
+    const usedIn = await Interview.find({slotId: id});
+    if(usedIn && usedIn.length > 0) {
+      return res.status(400).json({ message: 'Slot is in use' });
+    }
     await Slot.findByIdAndDelete(id);
     res.status(200).send({ message: 'Slot deleted successfully' });
   } catch (error) {
